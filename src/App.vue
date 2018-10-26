@@ -17,6 +17,7 @@ import SearchBox from './components/SearchBox.vue'
 import SearchBoxStore from './components/SearchBoxStore.vue'
 import SearchResults from './components/SearchResults.vue'
 import SearchResultsStore from './components/SearchResultsStore.vue'
+/*import { TimelineMax } from "gsap";*/
 
 export default {
   name: 'MainApp',
