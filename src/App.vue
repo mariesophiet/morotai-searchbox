@@ -1,11 +1,6 @@
 <template>
   <div id="app">
-    <h2>Props and Events</h2>
-    <SearchBox searchQuery="" @textHasChanged="parentHandler" />
-    <SearchResults :searchQuery="searchQuery"/>
-
-    <hr />
-    <h2>Store / Vuex</h2>
+    
     <SearchBoxStore />
     <SearchResultsStore />
   </div>
@@ -13,17 +8,17 @@
 
 <script>
 /* eslint-disable */
-import SearchBox from './components/SearchBox.vue'
+//import SearchBox from './components/SearchBox.vue'
 import SearchBoxStore from './components/SearchBoxStore.vue'
-import SearchResults from './components/SearchResults.vue'
+//import SearchResults from './components/SearchResults.vue'
 import SearchResultsStore from './components/SearchResultsStore.vue'
-/*import { TimelineMax } from "gsap";*/
+
 
 export default {
   name: 'MainApp',
   components: {
-    SearchBox,
-    SearchResults,
+    //SearchBox,
+    //SearchResults,
     SearchBoxStore,
     SearchResultsStore
   },

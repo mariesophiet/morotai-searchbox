@@ -2,9 +2,11 @@
     <div class="search-box">
         
         <form  v-on:submit.prevent></form>
+        
+        <div class="content">
         <input class="input" id="input" :class="{visible: attachVisible}" type="text" placeholder="Search" :value="searchQuery" 
                @input="triggerChangeTextEvent" @keyup.enter="search"/>
-        
+        </div>
         <button id="button" type="button" v-on:click="attachVisible = !attachVisible"><i>Button</i></button>
     </div>
 </template>
@@ -71,29 +73,45 @@ TweenMax.from(".mask2", 2.2, {width:"0px", ease:Power0.easeNone, repeat:-1, repe
 input {
   font-size: 20px;
 }
-#button {
+.search-box {
+  overflow: auto;
+  display: inline-flex;
+}
+.content .input {
+  right: 0;
   position: absolute;
+}
+.content {
+  position: relative;
+  width: 212px;
+  margin-right: 5px;
+}
+#button {
   float: right;
+  height: 50px;
+  width: 50px;
 }
 .input {
   visibility: hidden;
   display: inline;
+  left: 0;
 }
 #input {
   width: auto;
-  
+  position: absolute;
 }
 @keyframes reducetime {
   0% {
     width: 0%;
+    left: 100%;
   }
   100% {
-    width: 139px;
+    width: 100%;
+    left: 0%;
   }
 }
 .visible {
   visibility: visible;
-  background-color: pink;
   animation-name: reducetime;
   animation-duration: 1s;
 }
