@@ -12,39 +12,29 @@
 </template>
 
 <script>
-/*import { TweenMax } from "gsap";
-import { TweenLite } from "gsap"
-//import $ from "jquery";
-import 'gsap/CSSPlugin';*/
-
 /* eslint-disable */
+import _ from 'lodash'
 
 export default {
   name: "SearchBoxStore",
   data: function() {
     return {
-      attachVisible: false
+      attachVisible: false,
+      change: ''
     };
   },
-  watch: {
-    searchQuery: function() {
-      this.$store.state.result1 = Math.random();
-      this.$store.state.result2 = Math.random();
-      this.$store.state.result3 = Math.random();
-    }
-  },
-
   computed: {
     searchQuery() {
       return this.$store.state.searchQuery;
-    },
-    show() {
-      return this.$store.state.show;
     }
   },
   methods: {
     triggerChangeTextEvent(event) {
-      this.$store.commit("changeSearchQuery", event.target.value);
+      this.change = event.target.value;
+      this.debouncedGetAnswer();
+      
+
+      //this.$store.commit("changeSearchQuery", event.target.value);
     },
     triggerShow(event) {
       event.preventDefault();
@@ -52,20 +42,14 @@ export default {
       //this.$store.commit("changeShow", event.target.value);
     },
     search() {
-      this.$store.state.result1 = Math.random();
-      this.$store.state.result2 = Math.random();
-      this.$store.state.result3 = Math.random();
+      this.$store.commit("changeSearchQuery", this.change);
     }
-  }
+  },
+  created: function() {
+    this.debouncedGetAnswer = _.debounce(this.search, 700);
+  },
 };
 
-/*var left = new TimelineMax();
-left.from($("#input"), 2, { width: 0 }, 1).from($("#input"), 2, { left: 400 }, 1);*/
-
-// animation of input-box
-/*TweenLite.defaultEase = Power0.easeNone;
-TweenMax.set(".mask", {transformOrigin:"100% 50%"});
-TweenMax.from(".mask2", 2.2, {width:"0px", ease:Power0.easeNone, repeat:-1, repeatDelay:2});*/
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->

@@ -6,7 +6,6 @@ Vue.use(Vuex)
 export const store = new Vuex.Store({
     state: {
         searchQuery: '',
-        show: false,
         result1: '',
         result2: '',
         result3: ''
@@ -14,20 +13,25 @@ export const store = new Vuex.Store({
     mutations: {
         changeSearchQuery(state, newSearchQuery) {
             state.searchQuery = newSearchQuery;
+            //store.dispatch('debounced');
+            state.result1 = Math.random();
         },
-        changeShow(state) {
-            state.show = !state.show;
+        changeResult1(state) {
+            state.result1 = Math.random();
         }
+
     }
+
     /*actions:{
         // API's can be called here and then accordingly can be passed for mutation
     },
     mutations: {
         changeStateOne(state, payload) {
-            state.state1 += payload; // Recieved the payload from the action at the bottom
+            state.state1 += payload; // Received the payload from the action at the bottom
         },
         changeStateTwo(state, payload) {
-            state.state2 += payload; // Recieved the payload from the action at the bottom.
+            state.state2 += payload; // Received the payload from the action at the bottom.
         }
     }*/
-})
+
+});
