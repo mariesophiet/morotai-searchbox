@@ -20,7 +20,8 @@ export default {
     //SearchBox,
     //SearchResults,
     SearchBoxStore,
-    SearchResultsStore
+    SearchResultsStore,
+    
   },
   data: function () {
       return {

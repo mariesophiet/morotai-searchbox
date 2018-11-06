@@ -1,22 +1,15 @@
 <template>
     <div class="search-result-container">
         <div class="search-query">
-            <div v-if="searchQueryEntered">You have searched for {{ searchQuery }}</div>
-
-
+            <div v-if="searchQueryEntered">You have searched for "{{ searchQuery }}"</div>
             <div class="search-results" v-if="searchQueryEntered">
-                <div>
-                    {{ result1 }}
-                </div>
-                <div>
-                    {{ result2 }} 
-                </div>
-                <div>
-                    {{ result3 }}
-                </div>
             </div>
+            <ul><li v-for="result in results" :key="result.title"> {{result.objectID}}, {{result.title}}, {{result.type}}</li>
+              </ul>
+            
         </div>
-    </div>
+        </div>
+    
 </template>
 
 <script>
@@ -32,14 +25,8 @@ export default {
     searchQuery() {
       return this.$store.state.searchQuery;
     },
-    result1() {
-      return this.$store.state.result1;
-    },
-    result2() {
-        return this.$store.state.result2;
-    },
-    result3() {
-        return this.$store.state.result3;
+    results() {
+      return this.$store.state.results;
     }
   }
 };
@@ -56,5 +43,9 @@ export default {
 
 .search-query {
   font-style: italic;
+}
+
+ul {
+  list-style-type: none;
 }
 </style>

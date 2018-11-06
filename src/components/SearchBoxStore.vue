@@ -46,7 +46,7 @@ export default {
     }
   },
   created: function() {
-    this.debouncedGetAnswer = _.debounce(this.search, 700);
+    this.debouncedGetAnswer = _.debounce(this.search, 1000);
   },
 };
 
