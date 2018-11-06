@@ -10,25 +10,19 @@ export const store = new Vuex.Store({
     state: {
         searchQuery: '',
         results: [],
-        result1: '',
-        result2: '',
-        result3: ''
+        attachVisible: false
     },
     mutations: {
         changeSearchQuery(state, newSearchQuery) {
             state.searchQuery = newSearchQuery;
-            //store.dispatch('debounced');
-            state.result1 = Math.random();
+            console.log("changeSearchQuery: " + this.searchQuery);
             algolia();
         },
-        changeResult1(state) {
-            state.result1 = Math.random();
-        },
-        /* changeResults(state, array[]) {
-             state.results = array;
-         },*/
         MUTATE_ITEMS(state, results) {
             Vue.set(state, 'results', results)
+        },
+        changeVisibility(state) {
+            state.attachVisible = !state.attachVisible;
         }
     },
     getters: {
@@ -39,6 +33,7 @@ export const store = new Vuex.Store({
     actions: {
         loadItems: (context, results) => {
             context.commit('MUTATE_ITEMS', results);
+            console.log("loadItems:");
         }
 
     }

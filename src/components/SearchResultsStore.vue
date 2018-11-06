@@ -1,12 +1,12 @@
 <template>
     <div class="search-result-container">
-        <div class="search-query">
+        <div v-if="attachVisible" class="search-query">
             <div v-if="searchQueryEntered">You have searched for "{{ searchQuery }}"</div>
             <div class="search-results" v-if="searchQueryEntered">
-            </div>
+            
             <ul><li v-for="result in results" :key="result.title"> {{result.objectID}}, {{result.title}}, {{result.type}}</li>
               </ul>
-            
+            </div>
         </div>
         </div>
     
@@ -19,6 +19,8 @@ export default {
     searchQueryEntered() {
       if (this.$store.state.searchQuery.length > 0) {
         return true;
+      } else if (this.$store.state.attachVisible == false) {
+        return false;
       }
       return false;
     },
@@ -27,6 +29,9 @@ export default {
     },
     results() {
       return this.$store.state.results;
+    },
+    attachVisible() {
+      return this.$store.state.attachVisible;
     }
   }
 };
