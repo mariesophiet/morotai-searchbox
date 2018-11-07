@@ -8,23 +8,24 @@
 
 <script>
 /* eslint-disable */
-//import SearchBox from './components/SearchBox.vue'
+
 import SearchBoxStore from "./components/SearchBoxStore.vue";
-//import SearchResults from './components/SearchResults.vue'
 import SearchResultsStore from "./components/SearchResultsStore.vue";
+import SearchResultItem from "./components/SearchResultItem.vue";
+
+
 
 export default {
   name: "MainApp",
   components: {
-    //SearchBox,
-    //SearchResults,
     SearchBoxStore,
-    SearchResultsStore
+    SearchResultsStore,
+    SearchResultItem
+   
   },
   data: function() {
     return {
       searchQuery: null,
-      show: false
     };
   },
   methods: {

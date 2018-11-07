@@ -3,18 +3,26 @@
         <div v-if="attachVisible" class="search-query">
             <div v-if="searchQueryEntered">You have searched for "{{ searchQuery }}"</div>
             <div class="search-results" v-if="searchQueryEntered">
-            
-            <ul><li v-for="result in results" :key="result.title"> {{result.objectID}}, {{result.title}}, {{result.type}}</li>
+              <ul><li v-for="result in results" :key="result.title"> {{result.objectID}}, {{result.title}}, {{result.type}}</li>
               </ul>
+            <div>
+              <template v-for="result in results">
+                <SearchResultItem :key="result.title" :title="result.title" :objectID="result.objectID" :type="result.type"></SearchResultItem>
+              </template>
             </div>
+          </div>
         </div>
-        </div>
+    </div>
     
 </template>
 
 <script>
+import SearchResultItem from "@/components/SearchResultItem.vue";
 export default {
   name: "SearchResultsStore",
+  components: {
+    SearchResultItem
+  },
   computed: {
     searchQueryEntered() {
       if (this.$store.state.searchQuery.length > 0) {
