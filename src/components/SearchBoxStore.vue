@@ -1,18 +1,19 @@
 <template>
     <div class="search-box">
+      <form class="wrapper" v-on:submit.prevent>
+        <button id="delete" type="button" v-on:click="visible" v-if="attachVisible"></button>
         <div class="content">
-        <input class="input" id="input" :class="{visible: attachVisible}" type="text" placeholder="Search" :value="searchQuery" 
+          <input class="input" id="input" :class="{visible: attachVisible}" type="text" placeholder="Search" :value="searchQuery" 
                @input="triggerChangeTextEvent" @keyup.enter="search"/>
         </div>
-        <button id="button" type="button" v-on:click="visibility"><img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png" alt="icon"/></button>
-        <button id="delete" type="button" v-on:click="visibility" v-if="attachVisible"><img src="https://image.flaticon.com/icons/svg/458/458594.svg"/></button>
+      </form>
+      <button id="button" type="button" v-on:click="visibility"><img src="https://cdn1.iconfinder.com/data/icons/hawcons/32/698627-icon-111-search-512.png" alt="icon"/></button>
     </div>
 </template>
 
 <script>
 /* eslint-disable */
 import _ from "lodash";
-
 export default {
   name: "SearchBoxStore",
   data: function() {
@@ -42,14 +43,21 @@ export default {
     },
     triggerShow(event) {
       event.preventDefault();
-
       //this.$store.commit("changeShow", event.target.value);
     },
     search() {
-      console.log("search:" + this.change);
       this.$store.commit("changeSearchQuery", this.change);
     },
     visibility() {
+      this.$store.commit("changeVisibility");
+      if (this.$store.state.attachVisible) {
+        this.search();
+      }
+      else { 
+        this.$store.commit("changeVisibility");
+      }
+    },
+    visible() {
       this.$store.commit("changeVisibility");
     }
   },
@@ -87,6 +95,8 @@ button {
   height: 35px;
   width: 35px;
   border: none;
+  background: transparent;
+  
 }
 .input {
   visibility: hidden;
@@ -115,5 +125,20 @@ button {
 img {
   height: 20px;
   width: 20px;
+}
+.wrapper button {
+  overflow: visible;
+}
+#delete {
+  z-index: 1;
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  right: 15px;
+  top: 5px;
+  background-image: url(https://image.flaticon.com/icons/svg/458/458594.svg);
+}
+.wrapper {
+  position: relative;
 }
 </style>
