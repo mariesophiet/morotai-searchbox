@@ -15,7 +15,6 @@ export const store = new Vuex.Store({
     mutations: {
         changeSearchQuery(state, newSearchQuery) {
             state.searchQuery = newSearchQuery;
-            console.log("changeSearchQuery: " + this.searchQuery);
             algolia();
         },
         MUTATE_ITEMS(state, results) {
@@ -33,36 +32,6 @@ export const store = new Vuex.Store({
     actions: {
         loadItems: (context, results) => {
             context.commit('MUTATE_ITEMS', results);
-            console.log("loadItems:");
         }
-
     }
-
-    /* actions: {
-         submit() {
-             this.$http.post('https://testproject-b1731.firebaseio.com/data.json', this.searchQuery)
-                 .then(response => {
-                     console.log(response)
-                 }, error => {
-                     console.log(error);
-                 });
-*/
-
-
-
-
-
-
-    /*actions:{
-        // API's can be called here and then accordingly can be passed for mutation
-    },
-    mutations: {
-        changeStateOne(state, payload) {
-            state.state1 += payload; // Received the payload from the action at the bottom
-        },
-        changeStateTwo(state, payload) {
-            state.state2 += payload; // Received the payload from the action at the bottom.
-        }
-    }*/
-
 });

@@ -1,38 +1,26 @@
 <template>
   <div id="app">
     
-    <SearchBoxStore/>
-    <SearchResultsStore/>
+    <SearchBox/>
+    <SearchResults/>
   </div>
 </template>
 
 <script>
-/* eslint-disable */
 
-import SearchBoxStore from "./components/SearchBoxStore.vue";
-import SearchResultsStore from "./components/SearchResultsStore.vue";
-import SearchResultItem from "./components/SearchResultItem.vue";
-
-
+import SearchBox from "./components/SearchBox.vue";
+import SearchResults from "./components/SearchResults.vue";
 
 export default {
   name: "MainApp",
   components: {
-    SearchBoxStore,
-    SearchResultsStore,
-    SearchResultItem
-   
+    SearchBox,
+    SearchResults
   },
   data: function() {
     return {
       searchQuery: null,
     };
-  },
-  methods: {
-    parentHandler(inputText) {
-      this.searchQuery = inputText;
-      //console.log("Der Parent hat folgendes erhalten: " + event);
-    }
   }
 };
 </script>

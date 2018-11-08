@@ -10,3 +10,4 @@ export default {
   props: ["title", "objectID", "type"]
 };
 </script>
+
